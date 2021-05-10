@@ -3,7 +3,7 @@ local tostring = tostring
 local setmetatable = setmetatable
 local schar = string.char
 
-module 'ansicolors'
+local _M = {}
 
 local colormt = {}
 
@@ -60,3 +60,5 @@ local colors = {
 for c, v in pairs(colors) do
     _M[c] = makecolor(v)
 end
+
+return _M
