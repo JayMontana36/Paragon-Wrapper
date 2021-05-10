@@ -1,32 +1,35 @@
 --[[ Init - Localize Functions ]]
 local io_write, os_execute, Print, string_format, os_date, io_open, string_gmatch, string_gsub, io_popen, string_find, io_read, os_exit
 	= io.write, os.execute, print, string.format, os.date, io.open, string.gmatch, string.gsub, io.popen, string.find, io.read, os.exit
-local ansicolors = load("\108\111\99\97\108\32\112\97\105\114\115\61\112\97\105\114\115\59\108\111\99\97\108\32\116\111\115\116\114\105\110\103\61\116\111\115\116\114\105\110\103\59\108\111\99\97\108\32\115\101\116\109\101\116\97\116\97\98\108\101\61\115\101\116\109\101\116\97\116\97\98\108\101\59\108\111\99\97\108\32\97\61\115\116\114\105\110\103\46\99\104\97\114\59\108\111\99\97\108\32\98\61\123\125\108\111\99\97\108\32\99\61\123\125\102\117\110\99\116\105\111\110\32\99\58\95\95\116\111\115\116\114\105\110\103\40\41\114\101\116\117\114\110\32\115\101\108\102\46\118\97\108\117\101\32\101\110\100\59\102\117\110\99\116\105\111\110\32\99\58\95\95\99\111\110\99\97\116\40\100\41\114\101\116\117\114\110\32\116\111\115\116\114\105\110\103\40\115\101\108\102\41\46\46\116\111\115\116\114\105\110\103\40\100\41\101\110\100\59\102\117\110\99\116\105\111\110\32\99\58\95\95\99\97\108\108\40\101\41\114\101\116\117\114\110\32\115\101\108\102\46\46\101\46\46\98\46\114\101\115\101\116\32\101\110\100\59\99\46\95\95\109\101\116\97\116\97\98\108\101\61\123\125\108\111\99\97\108\32\102\117\110\99\116\105\111\110\32\102\40\103\41\114\101\116\117\114\110\32\115\101\116\109\101\116\97\116\97\98\108\101\40\123\118\97\108\117\101\61\97\40\50\55\41\46\46\39\91\39\46\46\116\111\115\116\114\105\110\103\40\103\41\46\46\39\109\39\125\44\99\41\101\110\100\59\108\111\99\97\108\32\104\61\123\114\101\115\101\116\61\48\44\99\108\101\97\114\61\48\44\98\114\105\103\104\116\61\49\44\100\105\109\61\50\44\117\110\100\101\114\115\99\111\114\101\61\52\44\98\108\105\110\107\61\53\44\114\101\118\101\114\115\101\61\55\44\104\105\100\100\101\110\61\56\44\98\108\97\99\107\61\51\48\44\114\101\100\61\51\49\44\103\114\101\101\110\61\51\50\44\121\101\108\108\111\119\61\51\51\44\98\108\117\101\61\51\52\44\109\97\103\101\110\116\97\61\51\53\44\99\121\97\110\61\51\54\44\119\104\105\116\101\61\51\55\44\111\110\98\108\97\99\107\61\52\48\44\111\110\114\101\100\61\52\49\44\111\110\103\114\101\101\110\61\52\50\44\111\110\121\101\108\108\111\119\61\52\51\44\111\110\98\108\117\101\61\52\52\44\111\110\109\97\103\101\110\116\97\61\52\53\44\111\110\99\121\97\110\61\52\54\44\111\110\119\104\105\116\101\61\52\55\125\102\111\114\32\105\44\106\32\105\110\32\112\97\105\114\115\40\104\41\100\111\32\98\91\105\93\61\102\40\106\41\101\110\100\59\114\101\116\117\114\110\32\98\10")()
 
 
 
---[[ Init - Color Functions ]] local _reset, _white, _black = ansicolors.reset, ansicolors.white, ansicolors.black
-local _onblack = ansicolors.onblack
+--[[ Init - Color Functions ]]
+local pairs=pairs;local tostring=tostring;local setmetatable=setmetatable;local a=string.char;local b={}local c={}function c:__tostring()return self.value end;function c:__concat(d)return tostring(self)..tostring(d)end;function c:__call(e)return self..e..b.reset end;c.__metatable={}local function f(g)return setmetatable({value=a(27)..'['..tostring(g)..'m'},c)end;local h={reset=0,clear=0,bright=1,dim=2,underscore=4,blink=5,reverse=7,hidden=8,black=30,red=31,green=32,yellow=33,blue=34,magenta=35,cyan=36,white=37,onblack=40,onred=41,ongreen=42,onyellow=43,onblue=44,onmagenta=45,oncyan=46,onwhite=47}for i,j in pairs(h)do b[i]=f(j)end--ansicolors mini
+local ansicolors = b
+local _reset, _white, _black = ansicolors.reset.value, ansicolors.white.value, ansicolors.black.value
+
+local _onblack = ansicolors.onblack.value
 local _ColorDefault = string_format("%s%s%s", _reset, _onblack, _white)
 local function ColorDefault()
 	io_write(_ColorDefault)
 end
-local _onblue = ansicolors.onblue
+local _onblue = ansicolors.onblue.value
 local _ColorBlue = string_format("%s%s%s", _reset, _onblue, _white)
 local function ColorBlue()
 	io_write(_ColorBlue)
 end
-local _onred = ansicolors.onred
+local _onred = ansicolors.onred.value
 local _ColorRed = string_format("%s%s%s", _reset, _onred, _white)
 local function ColorRed()
 	io_write(_ColorRed)
 end
-local _onyellow = ansicolors.onyellow
+local _onyellow = ansicolors.onyellow.value
 local _ColorYellow = string_format("%s%s%s", _reset, _onyellow, _black)
 local function ColorYellow()
 	io_write(_ColorYellow)
 end
-local _ongreen = ansicolors.ongreen
+local _ongreen = ansicolors.ongreen.value
 local _ColorGreen = string_format("%s%s%s", _reset, _ongreen, _black)
 local function ColorGreen()
 	io_write(_ColorGreen)
